@@ -1,4 +1,4 @@
-package Models;
+package com.todolist.ToDoList.Models;
 
 public class ListItem {
 

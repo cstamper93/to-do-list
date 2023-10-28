@@ -1,6 +1,6 @@
-package DAO;
+package com.todolist.ToDoList.DAO;
 
-import Models.ListItem;
+import com.todolist.ToDoList.Models.ListItem;
 
 public interface ListItemDao {
 
