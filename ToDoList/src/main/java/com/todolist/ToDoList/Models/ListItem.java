@@ -5,6 +5,8 @@ public class ListItem {
     private int itemId;
     private String item;
 
+    public ListItem(){}
+
     public ListItem(int itemId, String item) {
         this.itemId = itemId;
         this.item = item;
@@ -18,7 +20,7 @@ public class ListItem {
         this.item = item;
     }
 
-    public int getItemId(int itemId) {
+    public int getItemId() {
         return this.itemId;
     }
 
