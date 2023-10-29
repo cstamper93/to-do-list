@@ -3,9 +3,11 @@ package com.todolist.ToDoList.DAO;
 import com.todolist.ToDoList.Models.ListItem;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
 import javax.xml.crypto.Data;
 
+@Component
 public class JdbcListItem implements ListItemDao {
 
     private JdbcTemplate jdbcTemplate;
