@@ -3,9 +3,12 @@ package com.todolist.ToDoList.DAO;
 import com.todolist.ToDoList.Models.ListItem;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import javax.xml.crypto.Data;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class JdbcListItem implements ListItemDao {
@@ -37,6 +40,8 @@ public class JdbcListItem implements ListItemDao {
         return newListItem;
     }
 
+
+    // Use mapper for below method??
     @Override
     public ListItem editListItem(ListItem listItem) {
         ListItem updatedItem = new ListItem();
@@ -65,5 +70,23 @@ public class JdbcListItem implements ListItemDao {
             success = true;
         }
         return success;
+    }
+
+    @Override
+    public List<ListItem> getAllListItems() {
+        List<ListItem> itemList = new ArrayList<>();
+        String sql = "SELECT * FROM item;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        while(results.next()) {
+            itemList.add(mapRowToListItem(results));
+        }
+        return itemList;
+    }
+
+    private ListItem mapRowToListItem(SqlRowSet results) {
+        ListItem listItem = new ListItem();
+        listItem.setItemId(results.getInt("item_id"));
+        listItem.setItem(results.getString("item"));
+        return listItem;
     }
 }

@@ -3,6 +3,7 @@ package com.todolist.ToDoList.Controllers;
 import com.todolist.ToDoList.DAO.ListItemDao;
 import com.todolist.ToDoList.Models.ListItem;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,4 +21,24 @@ public class ItemController {
 //        return listItemDao.get
 //    }
 
+    @GetMapping()
+    public List<ListItem> getAllListItems() {
+        return listItemDao.getAllListItems();
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping()
+    public void createListItem(@RequestBody ListItem listItem) {
+        listItemDao.createListItem(listItem);
+    }
+
+    @PutMapping
+    public void editListItem(@RequestBody ListItem listItem) {
+        listItemDao.editListItem(listItem);
+    }
+
+    @DeleteMapping
+    public void deleteListItem(@RequestBody ListItem listItem) {
+        listItemDao.deleteListItem(listItem);
+    }
 }
