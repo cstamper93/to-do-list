@@ -27,18 +27,18 @@ public class ItemController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(path="/{item}")
-    public void createListItem(@PathVariable String item) {
-        listItemDao.createListItem(item);
+    @PostMapping()
+    public void createListItem(@RequestBody String content) {
+        listItemDao.createListItem(content);
     }
 
-    @PutMapping
+    @PutMapping()
     public void editListItem(@RequestBody ListItem listItem) {
         listItemDao.editListItem(listItem);
     }
 
-    @DeleteMapping
-    public void deleteListItem(@RequestBody ListItem listItem) {
-        listItemDao.deleteListItem(listItem);
+    @DeleteMapping(path="/{id}")
+    public void deleteListItem(@PathVariable int id) {
+        listItemDao.deleteListItem(id);
     }
 }

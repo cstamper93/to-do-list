@@ -27,8 +27,9 @@ public class JdbcListItem implements ListItemDao {
         ListItem newListItem = new ListItem();
         newListItem.setItemId(newItemId);
         String sqlSelect = "SELECT * FROM item where item_id = ?;";
-        String newListItemContent = jdbcTemplate.queryForObject(sqlSelect, String.class, newItemId);
-        newListItem.setItem(newListItemContent);
+//        String newListItemContent = jdbcTemplate.queryForObject(sqlSelect, String.class, newItemId);
+//        newListItem.setItem(newListItemContent);
+        newListItem.setItem(item);
 
         return newListItem;
     }
@@ -53,10 +54,10 @@ public class JdbcListItem implements ListItemDao {
     }
 
     @Override
-    public boolean deleteListItem(ListItem listItem) {
+    public boolean deleteListItem(int id) {
         boolean success = false;
         String sqlDelete = "DELETE FROM item WHERE item_id = ?;";
-        int linesUpdated =jdbcTemplate.update(sqlDelete, listItem.getItemId());
+        int linesUpdated =jdbcTemplate.update(sqlDelete, id);
         if(linesUpdated == 1) {
             success = true;
         }

@@ -12,7 +12,7 @@ public interface ListItemDao {
 
     boolean editListItem(ListItem listItem);
 
-    boolean deleteListItem(ListItem listItem); // or use int listId?
+    boolean deleteListItem(int id); // or use int listId?
 
     List<ListItem> getAllListItems();
 
