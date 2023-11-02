@@ -27,9 +27,9 @@ public class ItemController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping()
-    public void createListItem(@RequestBody ListItem listItem) {
-        listItemDao.createListItem(listItem);
+    @PostMapping(path="/{item}")
+    public void createListItem(@PathVariable String item) {
+        listItemDao.createListItem(item);
     }
 
     @PutMapping

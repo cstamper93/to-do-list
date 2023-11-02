@@ -19,24 +19,17 @@ public class JdbcListItem implements ListItemDao {
     }
 
     @Override
-    public ListItem createListItem(ListItem listItem) {
+    public ListItem createListItem(String item) {
         // run queryForObject method and use another query to return the newly created ListItem?
         String sqlInsert = "INSERT INTO item (item) VALUES (?) " +
                 "RETURNING item_id";
-        Integer newItemId = jdbcTemplate.queryForObject(sqlInsert, Integer.class, listItem.getItem());
+        Integer newItemId = jdbcTemplate.queryForObject(sqlInsert, Integer.class, item);
         ListItem newListItem = new ListItem();
+        newListItem.setItemId(newItemId);
         String sqlSelect = "SELECT * FROM item where item_id = ?;";
-        int newListItemId = 0;
-        String newListItemContent = "";
-        try {
-            newListItemId = jdbcTemplate.queryForObject(sqlSelect, Integer.class, listItem.getItemId());
-            newListItemContent = jdbcTemplate.queryForObject(sqlSelect, String.class, listItem.getItemId());
-            // maybe I need to separate this into 2 queries for each data type?
-        } catch(DataAccessException e) {
-            System.out.println("Error");
-        }
-        newListItem.setItemId(newListItemId);
+        String newListItemContent = jdbcTemplate.queryForObject(sqlSelect, String.class, newItemId);
         newListItem.setItem(newListItemContent);
+
         return newListItem;
     }
 
