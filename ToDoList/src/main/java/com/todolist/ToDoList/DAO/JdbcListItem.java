@@ -43,22 +43,20 @@ public class JdbcListItem implements ListItemDao {
 
     // Use mapper for below method??
     @Override
-    public ListItem editListItem(ListItem listItem) {
-        ListItem updatedItem = new ListItem();
-        int updatedId = 0;
-        String updatedContent = "";
+    public boolean editListItem(ListItem listItem) {
+        boolean success = false;
         String sqlUpdate = "UPDATE item SET item = ? WHERE item_id = ?;";
-        jdbcTemplate.update(sqlUpdate, listItem.getItemId());
         String sqlSelect = "SELECT * FROM item WHERE item_id = ?;";
-        try {
-            jdbcTemplate.queryForObject(sqlSelect, Integer.class, listItem.getItemId());
-            jdbcTemplate.queryForObject(sqlSelect, String.class, listItem.getItemId());
-        } catch(DataAccessException e) {
-            System.out.println("Error");
-        }
-        updatedItem.setItemId(updatedId);
-        updatedItem.setItem(updatedContent);
-        return updatedItem;
+//        try {
+//            String before = jdbcTemplate.queryForObject(sqlSelect, String.class, listItem.getItemId());
+//        } catch(DataAccessException e) {
+//            System.out.println("Error");
+//        }
+        jdbcTemplate.update(sqlUpdate, listItem.getItem(), listItem.getItemId());
+//        if(!before.equals(after)) {
+//            success = true;
+//        }
+        return success;
     }
 
     @Override

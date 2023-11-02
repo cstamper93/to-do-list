@@ -10,7 +10,7 @@ public interface ListItemDao {
 
     ListItem createListItem(ListItem listItem);
 
-    ListItem editListItem(ListItem listItem);
+    boolean editListItem(ListItem listItem);
 
     boolean deleteListItem(ListItem listItem); // or use int listId?
 
