@@ -1,23 +1,18 @@
 import Vue from 'vue'
-import Vuex from 'vuex' 
-//import axios from 'axios' 
+import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-    state: {
-      newItem: ""
-    },
-    getters: {
-
-    },
-    mutations: {
-
-    },
-    actions: {
-
-    },
-    modules: {
-
-    }
+  state: {
+    newItem: ""
+  },
+  getters: {
+  },
+  mutations: {
+  },
+  actions: {
+  },
+  modules: {
+  }
 })

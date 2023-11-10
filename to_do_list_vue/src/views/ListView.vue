@@ -9,7 +9,7 @@
         <form>
             <input type="text" v-model="$store.state.newItem"/>
             <!-- add button here to call method -->
-            <button class="btn" v-on:click="addToList()">Add</button>
+            <button class="add-btn" v-on:click="addToList()">Add</button>
         </form>
     </div>
   </div>

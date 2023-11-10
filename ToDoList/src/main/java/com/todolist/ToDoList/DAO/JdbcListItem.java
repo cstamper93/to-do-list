@@ -54,14 +54,14 @@ public class JdbcListItem implements ListItemDao {
     }
 
     @Override
-    public boolean deleteListItem(int id) {
-        boolean success = false;
+    public void deleteListItem(int id) {
+        //boolean success = false;
         String sqlDelete = "DELETE FROM item WHERE item_id = ?;";
         int linesUpdated =jdbcTemplate.update(sqlDelete, id);
-        if(linesUpdated == 1) {
-            success = true;
-        }
-        return success;
+//        if(linesUpdated == 1) {
+//            success = true;
+//        }
+//        return success;
     }
 
     @Override

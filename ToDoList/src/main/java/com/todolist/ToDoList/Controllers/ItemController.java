@@ -16,11 +16,6 @@ public class ItemController {
     @Autowired
     private ListItemDao listItemDao;
 
-//    @GetMapping(path="/{id}")
-//    public ListItem getListItem(@PathVariable int id) {
-//        return listItemDao.get
-//    }
-
     @GetMapping()
     public List<ListItem> getAllListItems() {
         return listItemDao.getAllListItems();
