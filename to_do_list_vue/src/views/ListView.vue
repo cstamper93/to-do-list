@@ -7,8 +7,9 @@
     </div>
     <div class="user-input">
         <form>
-            <input type="text" />
+            <input type="text" v-model="$store.state.newItem"/>
             <!-- add button here to call method -->
+            <button class="btn" v-on:click="addToList()">Add</button>
         </form>
     </div>
   </div>
@@ -23,7 +24,8 @@ export default {
     name: 'list-view',
     data() {
         return {
-            listItems: []
+            listItems: [],
+            newItem: ""
         }
     },
     created() {
@@ -32,8 +34,9 @@ export default {
         })
     },
     methods: {
-        addListItem(item) {
-            BackendService.addToList(item).then((response) => {
+        addToList() {
+            this.newItem = this.$store.state.newItem;
+            BackendService.addListItem(this.newItem).then((response) => {
                 if(response.status === 200) {
                     location.reload;
                 }
