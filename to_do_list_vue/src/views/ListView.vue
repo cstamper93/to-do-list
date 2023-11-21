@@ -7,7 +7,7 @@
     </div>
     <div class="user-input">
         <form>
-            <input type="text" v-model="$store.state.newItem"/>
+            <input type="text" v-model="$store.state.newItem.item"/>
             <!-- add button here to call method -->
             <button class="add-btn" v-on:click="addToList()">Add</button>
         </form>
@@ -25,7 +25,7 @@ export default {
     data() {
         return {
             listItems: [],
-            newItem: ""
+            newItem: {}
         }
     },
     created() {

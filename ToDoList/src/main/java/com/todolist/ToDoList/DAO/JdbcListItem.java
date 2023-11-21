@@ -19,17 +19,17 @@ public class JdbcListItem implements ListItemDao {
     }
 
     @Override
-    public ListItem createListItem(String item) {
+    public ListItem createListItem(ListItem item) {
         // run queryForObject method and use another query to return the newly created ListItem?
         String sqlInsert = "INSERT INTO item (item) VALUES (?) " +
                 "RETURNING item_id";
-        Integer newItemId = jdbcTemplate.queryForObject(sqlInsert, Integer.class, item);
+        Integer newItemId = jdbcTemplate.queryForObject(sqlInsert, Integer.class, item.getItem());
         ListItem newListItem = new ListItem();
         newListItem.setItemId(newItemId);
         String sqlSelect = "SELECT * FROM item where item_id = ?;";
 //        String newListItemContent = jdbcTemplate.queryForObject(sqlSelect, String.class, newItemId);
 //        newListItem.setItem(newListItemContent);
-        newListItem.setItem(item);
+        newListItem.setItem(item.getItem());
 
         return newListItem;
     }

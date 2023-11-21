@@ -5,7 +5,10 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    newItem: ""
+    newItem: {
+      id: null,
+      item: ""
+    }
   },
   getters: {
   },

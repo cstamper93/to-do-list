@@ -23,8 +23,8 @@ public class ItemController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping()
-    public void createListItem(@RequestBody String content) {
-        listItemDao.createListItem(content);
+    public void createListItem(@RequestBody ListItem item) {
+        listItemDao.createListItem(item);
     }
 
     @PutMapping()

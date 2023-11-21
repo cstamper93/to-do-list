@@ -8,7 +8,7 @@ public interface ListItemDao {
 
     // We want to be able to add, edit, retrieve and delete list items
 
-    ListItem createListItem(String item);
+    ListItem createListItem(ListItem item);
 
     boolean editListItem(ListItem listItem);
 
