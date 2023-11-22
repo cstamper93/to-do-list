@@ -1,8 +1,8 @@
 <template>
   <div class="list-container">
     <ul class="to-do-items">
-      <li class="item">{{ item.item }}</li>
-      <button class="edit-btn" v-on:click="editItem()">Edit</button>
+      <li class="item">{{ item.item }}  {{ item.itemId }}</li>
+      <button class="edit-btn" v-on:click="itemId=item.itemId" v-if="itemId != item.itemId">Edit</button>
       <button class="dlt-btn" v-on:click="deleteItem(item.itemId)">Remove</button>
     </ul>
     
@@ -19,7 +19,8 @@ export default {
   },
   data() {
     return {
-      
+      editOption: false,
+      itemId: null
     }
   },
   methods: {
