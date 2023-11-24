@@ -8,7 +8,6 @@
     <div class="user-input">
         <form>
             <input type="text" v-model="$store.state.newItem.item"/>
-            <!-- add button here to call method -->
             <button class="add-btn" v-on:click="addToList()">Add</button>
         </form>
     </div>
