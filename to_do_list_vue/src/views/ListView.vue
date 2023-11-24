@@ -11,6 +11,9 @@
             <button class="add-btn" v-on:click="addToList()">Add</button>
         </form>
     </div>
+    <div>
+        <button class="dlt-all-btn" v-if="$store.state.checkedItemIds.length > 0" v-on:click="deleteAll">Remove All Checked</button>
+    </div>
   </div>
 </template>
 
@@ -40,6 +43,13 @@ export default {
                     location.reload;
                 }
             })
+        },
+        deleteAll() {
+            for(let i=0; i<this.$store.state.checkedItemIds.length; i++) {
+                BackendService.deleteListItem(this.$store.state.checkedItemIds[i]);
+            }
+            alert("All selected items removed");
+            location.reload();
         }
     }
 }

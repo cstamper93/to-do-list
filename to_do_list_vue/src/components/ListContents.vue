@@ -1,17 +1,22 @@
 <template>
   <div class="list-container">
     <ul class="to-do-items">
-      <li class="item" v-if="itemId != item.itemId">{{ item.item }}  {{ item.itemId }}</li>
+      <li class="item" v-if="itemId != item.itemId">{{ item.item }}</li>
       <li class="edit-bar" v-if="itemId == item.itemId">
-        <input type="text" v-model="updatedItem.updatedItem"/>
+        <input type="text" v-model="$store.state.updatedItem.item"/>
       </li>
 
-      <button class="edit-btn" v-on:click="itemId=item.itemId, updatedItem.updatedItem=item.item" v-if="itemId != item.itemId">Edit</button>
+      <button class="edit-btn" v-on:click="itemId=item.itemId, $store.state.updatedItem.item=item.item, $store.state.updatedItem.itemId=item.itemId" 
+      v-if="itemId != item.itemId">Edit</button>
       <button class="cancel-btn" v-on:click="itemId = null" v-if="itemId == item.itemId">Cancel</button>
-      <button class="dlt-btn" v-on:click="deleteItem(item.itemId)" v-if="itemId != item.itemId">Remove</button>
-      <button class="done-btn" v-on:click="update(updatedItem)" v-if="itemId == item.itemId">Update</button>
+      <button class="dlt-btn" v-on:click="deleteItem(item.itemId)" v-if="itemId != item.itemId && $store.state.checkedItemIds.length == 0">Remove</button>
+      <button class="update-btn" v-on:click="update()" v-if="itemId == item.itemId">Update</button>
+
+      <input type="checkbox" id="dlt-box" v-bind:value="item.itemId" v-model="$store.state.checkedItemIds"/>
+
+      <div>{{ $store.state.checkedItemIds }}</div>
+
     </ul>
-    
   </div>
 </template>
 
@@ -28,8 +33,8 @@ export default {
       editOption: false,
       itemId: null,
       updatedItem: {
-        updatedId: null,
-        updatedItem: ""
+        itemId: null,
+        item: ""
       }
     }
   },
@@ -41,10 +46,10 @@ export default {
         }
       })
     },
-    update(updatedItem) {
-      updatedItem = this.updatedItem;
-      BackendService.editListItem(updatedItem).then((response) => {
+    update() {
+      BackendService.editListItem(this.$store.state.updatedItem).then((response) => {
         if(response.status == 200) {
+          alert("Item has been changed");
           location.reload();
         }
       })

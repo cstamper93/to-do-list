@@ -8,7 +8,12 @@ export default new Vuex.Store({
     newItem: {
       id: null,
       item: ""
-    }
+    },
+    updatedItem: {
+      itemId: null,
+      item: ""
+    },
+    checkedItemIds: []
   },
   getters: {
   },
