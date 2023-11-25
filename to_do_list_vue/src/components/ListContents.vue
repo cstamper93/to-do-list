@@ -14,8 +14,6 @@
 
       <input type="checkbox" id="dlt-box" v-bind:value="item.itemId" v-model="$store.state.checkedItemIds"/>
 
-      <div>{{ $store.state.checkedItemIds }}</div>
-
     </ul>
   </div>
 </template>
@@ -59,5 +57,10 @@ export default {
 </script>
 
 <style>
-
+ul {
+  list-style-position: inside;
+  text-align: left;
+  margin-left: 35vw;
+  font-size: 2em;
+}
 </style>

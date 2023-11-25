@@ -1,6 +1,10 @@
 <template>
   <div class="list-view">
+
     <h1 class="to-do-title">To Do List</h1>
+
+    <div class="div-bar"></div>
+
     <div class="current-list">
         <list-contents v-for="item in listItems" v-bind:key="item.id" 
         v-bind:item="item" />
@@ -56,5 +60,13 @@ export default {
 </script>
 
 <style>
+h1 {
+    font-size: 2.75em; 
+}
 
+.div-bar {
+    width: 100vw;
+    height: 10px;
+    color: black;
+}
 </style>
